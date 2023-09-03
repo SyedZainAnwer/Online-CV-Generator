@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Input from "../shared/Input";
 import TextArea from "../shared/TextArea";
-import { PersonalDetails } from '@/types/appTypes';
+import { PersonalDetails } from '@/utils/constants/appConstants';
 
 interface propTypes {
   className?: string;

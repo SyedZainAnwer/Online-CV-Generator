@@ -39,10 +39,10 @@ const DropDown = ({
   return (
     <div className={`${className ? className : ''} w-full`}>
       {title && (
-        <h4 className="font-medium text-sm text-black mb-2">{title}</h4>
+        <h4 className="font-medium text-sm text-black">{title}</h4>
       )}
       <div
-        className="border border-1 rounded border-light_gray px-4 py-5 flex justify-between"
+        className="border border-1 rounded border-light_gray px-4 py-4 flex justify-between"
         onClick={toggleDropdown}
       >
         <span className="block font-medium text-sm text-black">
@@ -55,7 +55,7 @@ const DropDown = ({
           {options.map((option) => (
             <li
               key={option.value}
-              className="w-full cursor-pointer py-4 text-xs font-bold px-4 bg-white shadow-md"
+              className="w-full cursor-pointer py-4 text-xs font-bold px-4 bg-white shadow-md text-mid_grey"
               onClick={() => handleOptionClick(option)}
             >
               {option.label}
