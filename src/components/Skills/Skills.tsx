@@ -4,7 +4,7 @@ import Button from '@/components/shared/Button'
 import { useState } from "react";
 
 interface propTypes {
-    skillsList?: string[] | null;
+    skillsList?: string[] | [];
     addSkills?: (value: string) => void;
     removeSkill?: (id: string | number) => void;
 }
@@ -20,7 +20,7 @@ const Skills = ({ skillsList, addSkills, removeSkill }:propTypes) => {
 
   return (
     <div className="px-4 py-5">
-        <h3 className="font-bold text-black text-lg mb-1">Display Your Skils Here</h3>
+        {/* <h3 className="font-bold text-black text-lg mb-1">Display Your Skils Here</h3> */}
         <Input 
             actions={<Button 
                         title="Add" 
@@ -34,7 +34,7 @@ const Skills = ({ skillsList, addSkills, removeSkill }:propTypes) => {
             value={skills}
         />
       <div className="grid grid-cols-4 md:grid-cols-10 gap-3">
-        {skillsList && skillsList.map((skill, index) => (
+        {skillsList.length > 0 && skillsList.map((skill, index) => (
           <Tag 
             title={skill} 
             className="mt-5" 

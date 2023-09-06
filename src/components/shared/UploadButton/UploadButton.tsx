@@ -4,7 +4,7 @@ import Button from "../Button";
 interface propTypes {
     title: string;
     className?: string;
-    onChange?: (e: React.ChangeEventHandler<HTMLInputElement>) => void
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const UploadButton = ({ title, className, onChange }: propTypes) => {
@@ -23,12 +23,14 @@ const UploadButton = ({ title, className, onChange }: propTypes) => {
                 title={title}
                 className={`${className || ''}`}
                 onClick={handleButtonClick}
+                parentClassName="flex justify-center"
             />
             <input 
                 type="file" 
+                ref={fileInputRef}
                 className="opacity-0"
-                onChange={(e) => onChange && onChange}
-                onClick={(e: any) => (e.target.value = null)}
+                onChange={onChange}
+                // onClick={(e: any) => (e.target.value = null)}
             />
         </div>
     )

@@ -6,7 +6,7 @@ interface propTypes {
   disabled?: boolean;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  parentClassName?: String;
+  parentClassName?: string;
 }
 
 const btnStyles = {

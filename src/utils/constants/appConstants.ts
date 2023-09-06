@@ -25,18 +25,8 @@ export const educationLevel = [
     }
 ];
 
-export interface PersonalDetails {
-    name: string;
-    role: string;
-    email: string;
-    number: string;
-    location: string;
-    linkedIn: string;
-    description: string
-}
-
 export const createCVSteps: {[key: number]: ICreateCV} = {
-    1: 'Personal Info',
+    1: 'Personal',
     2: 'Education',
     3: 'Skills'
 }

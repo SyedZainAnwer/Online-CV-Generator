@@ -4,7 +4,7 @@ interface propsType {
     className?: string;
     title: string;
     canRemove?: boolean;
-    onRemove?: () => void
+    onRemove?: () => void;
 }
 
 const Tag = ({ className, title, canRemove = true, onRemove }: propsType) => {

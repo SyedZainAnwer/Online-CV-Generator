@@ -40,11 +40,15 @@ const Steps = ({
         )}
       </div>
 
-      <div className="flex gap-[3.1rem] mt-4 w-full">
+      <div className="flex gap-1 mt-4 w-full">
         {Object.keys(createCVSteps).map((key) => (
-          <h3 key={key} className="text-black text-center font-semibold mt-2">
-            {createCVSteps[Number(key)]}
-          </h3>
+          <div className="w-full" key={key}>
+            <Button 
+              title={createCVSteps[Number(key)]}
+              variant="outline"
+              className="text-black w-full text-center"
+            />
+          </div>
         ))}
       </div>
 
