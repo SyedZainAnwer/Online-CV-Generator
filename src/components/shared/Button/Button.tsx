@@ -28,10 +28,11 @@ const Button = ({
       <button
         className={`
                 ${btnStyles[variant]} 
-                ${disabled && "opacity-20"}
+                ${disabled ? "opacity-20" : "opacity-1"}
                 ${className} 
                 flex justify-center items-center px-4 py-2 font-xs rounded min-w-fit`}
         onClick={onClick}
+        disabled={disabled}
       >
         {title}
       </button>

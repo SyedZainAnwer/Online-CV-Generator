@@ -1,18 +1,18 @@
 import { useState } from "react";
 import Avatar from "../shared/Avatar";
 import UploadButton from "../shared/UploadButton";
+import { useGlobalContext } from "@/context/AppContext";
 
 interface propTypes {
   className?: string;
 }
 
 const UploadProfile = ({ className }: propTypes) => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
+  const {personalInfo, setPersonalInfo} = useGlobalContext();
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target?.files[0];
     if (file) {
-      setSelectedFile(file);
+      setPersonalInfo({...personalInfo,avatar_url:file})
     }
   };
 
@@ -20,7 +20,7 @@ const UploadProfile = ({ className }: propTypes) => {
     <div
       className={`${className} w-full border border-1 border-light_gray rounded-md flex items-center flex-col gap-5 pt-6 pb-4`}
     >
-      <Avatar src={selectedFile} />
+      <Avatar src={personalInfo.avatar_url} />
       <UploadButton title="Upload" onChange={handleFileUpload} />
     </div>
   );

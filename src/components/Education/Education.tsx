@@ -8,9 +8,11 @@ import Seperator from "../shared/Seperator";
 interface propTypes {
   addFields?: () => void;
   educationLevelList: EducationDetails[];
+  setNextDisable?: React.Dispatch<React.SetStateAction<boolean>>;
+  handleEducationDetails?: (e: React.ChangeEvent<HTMLInputElement>, i) => void;
 }
 
-const Education = ({ addFields, educationLevelList }: propTypes) => {
+const Education = ({ addFields, educationLevelList, handleEducationDetails }: propTypes) => {
   return (
     <div className="py-5">
       {educationLevelList.map((educationListItem, i) => (
@@ -18,21 +20,41 @@ const Education = ({ addFields, educationLevelList }: propTypes) => {
           {i >= 1 && <Seperator className="bg-light_gray my-10" />}
           <div className="px-4">
             <DropDown
-              title={educationListItem.level}
+              name="level"
+              title="Education Level"
               options={educationLevel}
+              onChange={(e) => handleEducationDetails(e,i)}
             />
-            <Input title={educationListItem.group} className="mt-5" />
-            <Input title={educationListItem.institutionName} className="mt-5" />
+            <Input 
+              title="Group"
+              value={educationListItem.group} 
+              className="mt-5" 
+              onChange={(e) => handleEducationDetails(e,i)} 
+              name="group"
+            />
+            <Input
+              title="Institution Name" 
+              value={educationListItem.institutionName} 
+              className="mt-5" 
+              onChange={(e) => handleEducationDetails(e,i)}
+              name="institutionName"
+            />
             <div className="flex flex-1 gap-1">
               <Input
+                title="Start Date"
                 inputType="date"
-                title={educationListItem.startDate}
+                value={educationListItem.startDate}
                 className="mt-5 flex flex-1"
+                onChange={(e) => handleEducationDetails(e,i)}
+                name="startDate"
               />
               <Input
+                title="End Date"
                 inputType="date"
-                title={educationListItem.endDate}
+                value={educationListItem.endDate}
                 className="mt-5 flex flex-1"
+                onChange={(e) => handleEducationDetails(e,i)}
+                name="endDate"
               />
             </div>
           </div>

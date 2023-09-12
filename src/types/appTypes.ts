@@ -3,7 +3,7 @@ export type BtnVariants = 'default' | 'outline' | 'dark';
 export type ICreateCV = 'Personal' | 'Education' | 'Skills'
 
 export interface PersonalDetails {
-    avatar_url: string;
+    avatar_url: File;
     name: string;
     role: string;
     email: string;

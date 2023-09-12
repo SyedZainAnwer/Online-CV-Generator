@@ -8,6 +8,7 @@ interface propsType {
   className?: string
   placeholder?: string
   onChange?: (value: any) => void
+  name: string
 }
 
 const DropDown = ({
@@ -17,15 +18,12 @@ const DropDown = ({
   onChange,
   defaultValue,
   placeholder,
+  name
 }: propsType) => {
   const [isOpen, setIsOpen] = useState(false)
   const [selectedOption, setSelectedOption] = useState<
     (typeof options)[0] | null
   >(null)
-
-  useEffect(() => {
-    if (defaultValue) setSelectedOption(defaultValue)
-  }, [defaultValue])
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
@@ -34,7 +32,7 @@ const DropDown = ({
   const handleOptionClick = (option: (typeof options)[0]) => {
     setSelectedOption(option)
     setIsOpen(false)
-    onChange && onChange(option)
+    onChange && onChange({target: {value:option.value, name}})
   }
   return (
     <div className={`${className ? className : ''} w-full`}>

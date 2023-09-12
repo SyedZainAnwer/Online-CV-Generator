@@ -11,17 +11,18 @@ interface propTypes {
   onPrev?: () => void;
   onNext?: () => void;
   onSave?: () => void;
+  disableNext?: boolean
 }
 
 const Steps = ({
   className,
-  title,
   activeStep = 1,
   onPrev,
   hidePrev,
   showNext,
   onNext,
   onSave,
+  disableNext
 }: propTypes) => {
   return (
     <div className="sticky bg-white pt-5 md:mt-[-20px] mt[-50px]- md:top-0 top-[0px] pl-2 pr-4">
@@ -34,9 +35,18 @@ const Steps = ({
           className={`${hidePrev ? "opacity-0" : "opacity-1"}`}
         />
         {showNext ? (
-          <Button title="Next" variant="dark" onClick={onNext} />
+          <Button 
+            title="Next" 
+            variant="dark" 
+            onClick={onNext} 
+            disabled={disableNext}
+          />
         ) : (
-          <Button title="Save" variant="default" onClick={onSave} />
+          <Button 
+            title="Save" 
+            variant="default" 
+            onClick={onSave} 
+          />
         )}
       </div>
 

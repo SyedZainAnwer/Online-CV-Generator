@@ -8,32 +8,11 @@ import Seperator from "../shared/Seperator";
 interface propTypes {
   className?: string;
   personalDetails?: PersonalDetails;
-  handlePersonalInfo?: (e) => void
+  handlePersonalInfo?: (e) => void;
+  setNextDisable?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const PersonalInfo = ({ className, personalDetails, handlePersonalInfo }: propTypes) => {
-  // const [personalDetails, setPersonalDetails] = useState<PersonalDetails>({
-  //   avatar_url: "",
-  //   name: "",
-  //   role: "",
-  //   email: "",
-  //   number: "",
-  //   location: "",
-  //   linkedIn: "",
-  //   description: "",
-  // });
-
-  // const handlePersonalInfo = (
-  //   e:
-  //     | React.ChangeEvent<HTMLTextAreaElement>
-  //     | React.ChangeEvent<HTMLInputElement>
-  // ) => {
-  //   const { name, value } = e.target;
-  //   setPersonalDetails((prevDetails) => ({
-  //     ...prevDetails,
-  //     [name]: value,
-  //   }));
-  // };
   return (
     <div className={`${className} py-5`}>
       <div className="px-4">
