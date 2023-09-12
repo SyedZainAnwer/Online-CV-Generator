@@ -33,7 +33,7 @@ const Skills = ({ skillsList, addSkills, removeSkill }:propTypes) => {
             onChange={(e) => setSkills(e.target.value)}
             value={skills}
         />
-      <div className="flex flex-wrap gap-3 mt-7">
+      <div className="flex flex-wrap gap-3">
         {skillsList.length > 0 && skillsList.map((skill, index) => (
           <Tag 
             title={skill} 
