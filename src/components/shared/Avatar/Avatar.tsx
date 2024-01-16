@@ -13,11 +13,11 @@ const Avatar = ({ className, size, src }: propTypes) => {
       style={{ width: size ?? 80, height: size ?? 80 }}
     >
         {src ? (
-             <img
-             src={URL.createObjectURL(src)}
-             alt="user icon"
-             style={{ width: "100%", height: "100%", objectFit: "cover" }}
-           />
+              <img
+              src={URL.createObjectURL(src)}
+              alt="user icon"
+              style={{ width: "100%", height: "100%", objectFit: "cover" }}
+            />
         ) :
         (
             <img

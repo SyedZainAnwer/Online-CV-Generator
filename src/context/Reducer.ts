@@ -1,20 +1,46 @@
-import { State } from "@/types/Context";
+import { ContextProps, State } from "@/types/Context";
 import { Action } from "./Action";
 
-export const contextValue = {
-    personalInfo: {},
+export const contextValue: ContextProps = {
+    personalInfo: {
+        avatar_url: null,
+        name: '',
+        role: '',
+        email: '',
+        description: '',
+        linkedIn: '',
+        location: '',
+        number: ''
+    },
     setPersonalInfo: () => {},
-    education: {},
+    education: {endDate: '', group: '', institutionName: '', level: '', startDate: ''},
     setEducation: () => {},
     skills: [],
     setSkills: () => {},
-    message: {},
+    message: {
+      // ... initialize message if it's an object
+    },
     setMessage: () => {},
 };
 
 export const initialState: State = {
-    personalInfo: {},
-    education: {},
+    personalInfo: {
+        avatar_url: null,
+        description: '',
+        email: '',
+        linkedIn: '',
+        location: '',
+        name: '',
+        number: '',
+        role: ''
+    },
+    education: {
+        endDate: '',
+        group: '',
+        institutionName: '',
+        level: '',
+        startDate: ''
+    },
     skills: [],
     message: { show: false, text: '' }
 }

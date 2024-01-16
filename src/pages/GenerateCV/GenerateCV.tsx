@@ -1,5 +1,5 @@
 import { useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import Steps from "@/components/shared/Steps";
 import PersonalInfo from "@/components/PersonalInfo";
@@ -13,12 +13,13 @@ import { useGlobalContext } from "@/context/AppContext";
 const PERSONALINFO = 1;
 const EDUCATION = 2;
 const SKILLS = 3;
+
 const GenerateCV = () => {
   const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState(1);
   const { setMessage, personalInfo, setPersonalInfo, setEducation, setSkills } = useGlobalContext();
-  const [skillList, setSKillList] = useState<[] | Array<string>>([]);
-  // const [isDisabled, setIsDisabled] = useState(true);
+  const [skillList, setSkillList] = useState<string[]>([]);
+  const [isDisabled, setIsDisabled] = useState(true);
   const [personalDetails, setPersonalDetails] = useState<PersonalDetails>({
     avatar_url: null,
     name: "",
@@ -40,12 +41,13 @@ const GenerateCV = () => {
   ]);
 
   const onAddSkills = (skills: string) => {
-    if (!skills) return;
-    setSKillList((prevValues) => [...prevValues, skills]);
+    if (skills.trim() !== "") {
+      setSkillList((prevValues) => [...prevValues, skills.trim()]);
+    }
   };
 
   const onRemoveSkill = (removeSkill: string | number) => {
-    setSKillList((prevValues) =>
+    setSkillList((prevValues) =>
       prevValues.filter((skill) => skill !== removeSkill)
     );
   };
@@ -64,9 +66,7 @@ const GenerateCV = () => {
   };
 
   const handlePersonalInfo = (
-    e:
-      | React.ChangeEvent<HTMLTextAreaElement>
-      | React.ChangeEvent<HTMLInputElement>
+    e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>
   ) => {
     const { name, value } = e.target;
     setPersonalDetails((prevDetails) => ({
@@ -80,38 +80,45 @@ const GenerateCV = () => {
     i: number
   ) => {
     const { name, value } = e.target;
-    const onChangeValue = [...educationLevels];
-    onChangeValue[i][name] = value;
-    setEducationLevels(onChangeValue);
+    setEducationLevels((prevLevels) =>
+      prevLevels.map((level, index) =>
+        index === i ? { ...level, [name]: value } : level
+      )
+    );
   };
 
-  const isAnyFieldEmpty = () => {
-    for (const field in personalDetails) {
-      if (personalDetails[field] === "") {
-        return true;
-      }
-    }
-    return false;
-  };
+const isFormValid = () => {
+  return !(
+    personalDetails.description.trim() !== "" &&
+    personalDetails.email.trim() !== "" &&
+    personalDetails.linkedIn.trim() !== "" &&
+    personalDetails.location.trim() !== "" &&
+    personalDetails.role.trim() !== "" &&
+    personalDetails.name.trim() !== "" &&
+    personalDetails.number.trim() !== ""
+  );
+};
 
   const handleNextStep = () => {
     switch (currentStep) {
       case PERSONALINFO:
-        setPersonalInfo({avatar_url:personalDetails.avatar_url,...personalInfo})
+        setPersonalInfo({ avatar_url: personalDetails.avatar_url, ...personalDetails });
         break;
       case EDUCATION:
-        setEducation(educationLevels)
+        setEducation(educationLevels);
         break;
       case SKILLS:
-        setSkills(skillList)
+        setSkills(skillList);
+        break;
       default:
         break;
     }
+
     setCurrentStep(currentStep + 1);
-    console.log(personalInfo)
     setMessage({ show: true, text: "Saved", type: "success" });
-    if(currentStep === SKILLS) {
-      navigate('/templates')
+
+    if (currentStep === SKILLS) {
+      navigate('/templates');
     }
   };
 
@@ -153,7 +160,7 @@ const GenerateCV = () => {
         hidePrev={currentStep === 1 ? true : false}
         onNext={handleNextStep}
         onPrev={onPreviousStep}
-        // disableNext={isAnyFieldEmpty()}
+        disableNext={isFormValid()}
       />
       {forms[currentStep || 1]}
     </div>
@@ -161,3 +168,18 @@ const GenerateCV = () => {
 };
 
 export default GenerateCV;
+
+
+
+
+// const isFormValid = () => {
+//   return !(
+//     personalDetails.description.trim() !== "" &&
+//     personalDetails.email.trim() !== "" &&
+//     personalDetails.linkedIn.trim() !== "" &&
+//     personalDetails.location.trim() !== "" &&
+//     personalDetails.role.trim() !== "" &&
+//     personalDetails.name.trim() !== "" &&
+//     personalDetails.number.trim() !== ""
+//   );
+// };

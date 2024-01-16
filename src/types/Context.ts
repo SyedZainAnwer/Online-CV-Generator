@@ -1,4 +1,3 @@
-import { Action } from "@/context/Action";
 import { EducationDetails, IMessage, PersonalDetails } from "./appTypes"
 import { Dispatch, SetStateAction } from 'react'
 
@@ -14,8 +13,8 @@ export interface ContextProps {
 }
 
 export type State = {
-    personalInfo: PersonalDetails | {};
-    education: EducationDetails | {};
-    skills: string[] | [];
+    personalInfo: PersonalDetails;
+    education: EducationDetails;
+    skills: string[];
     message: IMessage
 }
